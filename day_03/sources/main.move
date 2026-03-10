@@ -8,6 +8,18 @@
 module challenge::day_03 {
     use std::vector;
 
+    public struct Habit has copy, drop {
+    name: vector<u8>,
+    completed: bool,
+    }
+    public fun new_habit(name: vector<u8>): Habit {
+    Habit {
+        name,
+        completed: true,
+    }
+}
+
+
     // TODO: Define a struct called 'Habit' with:
     // - name: vector<u8> (we'll use String later)
     // - completed: bool
