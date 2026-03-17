@@ -14,7 +14,6 @@ module challenge::day_04 {
         name: vector<u8>,
         completed: bool,
     }
-
     public fun new_habit(name: vector<u8>): Habit {
         Habit {
             name,
