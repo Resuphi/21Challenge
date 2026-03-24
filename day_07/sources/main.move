@@ -50,6 +50,25 @@ module challenge::day_07 {
             habit.completed = true;
         }
     }
+    #[test]
+    fun test_add_habit() {
+        let mut list = empty_list();
+        let habit_name = string::utf8(b"Kitap Oku");
+        let habit = new_habit(habit_name);
+        add_habit(&mut list, habit);
+        assert!(vector::length(&list.habits) == 1, 0);
+    }
+
+    #[test]
+    fun test_complete_habit() {
+        let mut list = empty_list();
+        let habit = new_habit(string::utf8(b"Spor Yap"));
+        add_habit(&mut list, habit);
+        complete_habit(&mut list, 0);
+        let habit_ref = vector::borrow(&list.habits, 0);
+        assert!(habit_ref.completed == true, 1);
+    }
+
 
     // Note: assert! is a built-in macro in Move 2024 - no import needed!
 
