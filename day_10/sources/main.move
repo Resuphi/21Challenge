@@ -33,6 +33,15 @@ module challenge::day_10 {
     public fun is_open(task: &Task): bool {
         task.status == TaskStatus::Open
     }
+    public fun complete_task(task: &mut Task) {
+        task.status = TaskStatus::Completed;
+    }
+    fun yrd_fonk(task: &Task): bool {
+
+        task.reward > 0
+    }
+
+
 
     // TODO: Write a public function 'complete_task' that:
     // - Takes task: &mut Task
