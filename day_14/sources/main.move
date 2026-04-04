@@ -81,6 +81,40 @@ module challenge::day_14 {
         };
         count
     }
+    #[test]
+    fun test_board_creation_and_add_task() {
+        let owner = @0x123;
+        let mut board = new_board(owner);
+        
+        let task = new_task(string::utf8(b"Kod Yaz"), 100);
+        add_task(&mut board, task);
+
+        let len = vector::length(&board.tasks);
+        assert_eq!(len, 1);
+    }
+    #[test]
+    fun test_complete_and_count() {
+        let owner = @0x1;
+        let mut board = new_board(owner);
+        
+        let task1 = new_task(string::utf8(b"Task 1"), 50);
+        let task2 = new_task(string::utf8(b"Task 2"), 100);
+        
+        add_task(&mut board, task1);
+        add_task(&mut board, task2);
+        
+        let task = vector::borrow_mut(&mut board.tasks, 0);
+        complete_task(task);
+        
+        assert_eq!(completed_count(&board), 1);
+    }
+    #[test]
+    fun test_total_reward_calculation() {
+        let mut board = new_board(@0x1);
+        add_task(&mut board, new_task(string::utf8(b"Task A"), 150));
+        add_task(&mut board, new_task(string::utf8(b"Task B"), 250));
+        assert!(total_reward(&board) == 400, 3);
+    }
 
     // Note: assert! is a built-in macro in Move 2024 - no import needed!
 
