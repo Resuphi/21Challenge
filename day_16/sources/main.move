@@ -73,6 +73,17 @@ module challenge::day_16 {
         vector::remove(&mut counters.plots, found_index);
         counters.harvested = counters.harvested + 1;
     }
+    public struct Farm has key {
+        id: UID,
+        counters : FarmCounters,
+    }
+    fun new_farm(ctx:&mut TxContext): Farm{
+        Farm {
+            id: object::new(ctx),
+            counters: new_counters(),
+        }
+    }
+
 
     // TODO: Define a struct called 'Farm' with:
     // - id: UID (this makes it a Sui object)
