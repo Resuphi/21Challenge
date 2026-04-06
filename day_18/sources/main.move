@@ -100,6 +100,15 @@ module challenge::day_18 {
     fun harvest_from_farm(farm: &mut Farm, plotId: u8) {
         harvest(&mut farm.counters, plotId);
     }
+    entry fun plant_on_farm_entry(farm: &mut Farm, plotId: u8){
+        plant_on_farm(farm, plotId);
+    
+    }
+    entry fun harvest_from_farm_entry(farm: &mut Farm, plotId: u8){
+        harvest_from_farm(farm, plotId);
+        
+    }
+
 
     // TODO: Write an entry function 'plant_on_farm_entry' that:
     // - Takes farm: &mut Farm, plotId: u8
