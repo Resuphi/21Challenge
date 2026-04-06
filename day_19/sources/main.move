@@ -106,6 +106,13 @@ module challenge::day_19 {
     entry fun harvest_from_farm_entry(farm: &mut Farm, plotId: u8) {
         harvest_from_farm(farm, plotId);
     }
+    fun total_planted(farm: &Farm): u64{
+        farm.counters.planted
+    
+    }
+    fun total_harvest(farm: &Farm): u64{
+        farm.counters.harvested
+    }
 
     // TODO: Write a function 'total_planted' that:
     // - Takes farm: &Farm (read-only reference)
@@ -126,4 +133,5 @@ module challenge::day_19 {
     // - Plants once
     // - Checks that total_planted returns 1
 }
+
 
