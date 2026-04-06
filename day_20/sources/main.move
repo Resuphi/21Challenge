@@ -8,6 +8,8 @@
 /// Note: You can copy code from day_19/sources/solution.move if needed
 
 module challenge::day_20 {
+
+    use sui::event;
     // TODO: Import the event module here
     // Hint: use sui::event;
 
@@ -106,6 +108,24 @@ module challenge::day_20 {
     fun total_harvested(farm: &Farm): u64 {
         farm.counters.harvested
     }
+    public struct PlantEvent has copy, drop {
+        planted_after: u64,
+    }
+    entry fun plant_on_farm_entry(farm: &mut Farm, plotId: u8){
+        plant_on_farm(farm, plotId);
+        let planted_count = total_planted(farm);
+        event::emit(PlantEvent{
+            planted_after: planted_count,
+        });
+
+
+    }
+    entry fun harvest_from_farm_entry(farm: &mut Farm, plotId: u8){
+        harvest_from_farm(farm, plotId);
+        
+    }
+
+
 
     // TODO: Define an event struct called 'PlantEvent' that:
     // - Has a field 'planted_after' of type u64
