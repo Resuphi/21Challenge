@@ -85,6 +85,17 @@ module challenge::day_17 {
             counters: new_counters(),
         }
     }
+    entry fun create_farm(ctx: &mut TxContext){
+        let farm = new_farm(ctx);
+        transfer::share_object(farm);
+
+    }
+    fun plant_on_farm(farm: &mut Farm, plotId: u8){
+        plant(&mut farm.counters, plotId);
+    }
+    fun harvest_from_farm(farm: &mut Farm, plotId: u8){
+        harvest(&mut farm.counters, plotId);
+    }
 
     // TODO: Write an entry function 'create_farm' that:
     // - Takes ctx: &mut TxContext
